@@ -11,11 +11,14 @@ Route::get('/home', function () {
     echo "This is home page";
 });
 
-Route::get('/about', function () {
-    return view('about');
-})->middleware('check');
+// Route::get('/about', function () {
+//     return view('about');
+// })->middleware('check');  //use middleware
 
+Route::get('/about', function () {
+     return view('about');
+});
 //Route::get('/contact', 'ContactController@index');  //after @ we write method we want to create //laravel 6 ard 7 writing format
 
-Route::get('/contact',[ContactController::class,'index']); //laravel 8 format
+Route::get('/contact-sdsdsdsdd-dsdd',[ContactController::class,'index'])->name('con'); //laravel 8 format  // addedd for route name  //profesional way to use
 

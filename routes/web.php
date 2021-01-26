@@ -22,3 +22,7 @@ Route::get('/about', function () {
 
 Route::get('/contact-sdsdsdsdd-dsdd',[ContactController::class,'index'])->name('con'); //laravel 8 format  // addedd for route name  //profesional way to use
 
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');

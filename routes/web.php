@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
+use App\Models\User;
 
 Route::get('/', function () {
     return view('welcome');
@@ -24,5 +25,7 @@ Route::get('/contact-sdsdsdsdd-dsdd',[ContactController::class,'index'])->name('
 
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
+
+    $users = User::all(); //we can get all data from user model
+    return view('dashboard', compact('users'));  //to pass all data from users use compact('users') function // pass all user data to view
 })->name('dashboard');

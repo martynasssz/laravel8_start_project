@@ -27,8 +27,9 @@
                         <th scope="row">{{ $i++ }}</th> <!-- i++ automatic increment-->
                         <td>{{ $user->name }}</td> <!-- $user access name-->
                         <td>{{ $user->email }}</td>
-                        <td>{{ $user->created_at->diffForHumans() }}</td> <!-- we will change format using Eloquen ORM  (laravel default function diffForHumans() )-->
-                      </tr> 
+                        {{-- <!-- <td>{{ $user->created_at->diffForHumans() }}</td> we will change format using Eloquen ORM  (laravel default function diffForHumans() ) --> --}}
+                        <td>{{ Carbon\Carbon::parse($user->created_at)->diffForHumans() }}</td> {{-- use carbon in blades when in controler use query builder --}}
+                    </tr> 
                       @endforeach                    
                     </tbody>
                   </table>    

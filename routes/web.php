@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\CategoryController;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 
@@ -23,6 +24,9 @@ Route::get('/about', function () {
 //Route::get('/contact', 'ContactController@index');  //after @ we write method we want to create //laravel 6 ard 7 writing format
 
 Route::get('/contact-sdsdsdsdd-dsdd',[ContactController::class,'index'])->name('con'); //laravel 8 format  // addedd for route name  //profesional way to use
+
+//Category controller
+Route::get('/category/all',[CategoryController::class,'AllCategory'])->name('all.category');
 
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {

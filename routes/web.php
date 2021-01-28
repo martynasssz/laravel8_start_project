@@ -28,6 +28,8 @@ Route::get('/contact-sdsdsdsdd-dsdd',[ContactController::class,'index'])->name('
 //Category controller
 Route::get('/category/all',[CategoryController::class,'AllCategory'])->name('all.category');
 
+Route::post('/category/add',[CategoryController::class,'AddCategory'])->name('store.category');
+
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 

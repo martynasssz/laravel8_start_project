@@ -44,7 +44,7 @@
                           @if($category->created_at == NULL) {{-- without if we get error because we use diffForHumans --}}
                           <span class="text-danger">No Date Set</span>
                           @else
-                          {{ $category->created_at->diffForHumans() }}
+                          {{ Carcon\Carbon::parse($category->created_at)->diffForHumans() }}
                           @endif
                         </td> 
                     </tr> 

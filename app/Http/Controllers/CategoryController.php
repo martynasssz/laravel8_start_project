@@ -6,13 +6,20 @@ use Carbon\Carbon;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+
 //use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
 {
     public function AllCategory(){
       // $categories = Category::all(); //get all data with category model
-      $categories = Category::latest()->get(); // latest data will showed in the top
+      //$categories = Category::latest()->get(); // latest data will showed in the top
+
+      //creating using query-builder
+
+      $categories = DB::table('categories')->latest()->get();
+
 
        return view('admin.category.index', compact('categories')); //compact pass all data to view
     }

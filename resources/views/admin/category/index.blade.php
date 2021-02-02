@@ -27,20 +27,28 @@
                     <thead>
                       <tr>
                         <th scope="col">SL No</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Email</th>
+                        <th scope="col">Category name</th>
+                        <th scope="col">Username </th>
                         <th scope="col">Created at</th>
                       </tr>
                     </thead>
                     <tbody>
-                    
+                    @php($i = 1)
+
+                    @foreach($categories as $category)
                       <tr>
-                        <th scope="row"></th> 
-                        <td></td>
-                        <td></td> 
-                        <td></td> 
+                        <th scope="row">{{ $i++ }}</th> 
+                        <td>{{ $category->category_name }}</td>
+                        <td>{{ $category->user_id }}</td> 
+                        <td>
+                          @if($category->created_at == NULL) {{-- without if we get error because we use diffForHumans --}}
+                          <span class="text-danger">No Date Set</span>
+                          @else
+                          {{ $category->created_at->diffForHumans() }}
+                          @endif
+                        </td> 
                     </tr> 
-                                      
+                    @endforeach                 
                     </tbody>
                   </table>    
                 </div>

@@ -39,7 +39,7 @@
                       <tr>
                          <th scope="row">{{ $categories->firstItem()+$loop->index }}</th> {{-- we use $categories->firstItem()+$loop->index, for reason, that numering will countinous in every next page--}}
                         <td>{{ $category->category_name }}</td>
-                        <td>{{ $category->user_id }}</td> 
+                        <td>{{ $category->user->name }}</td>   {{-- because is one to one relation we use user class model to acess name --}}
                         <td>
                           @if($category->created_at == NULL) {{-- without if we get error because we use diffForHumans --}}
                           <span class="text-danger">No Date Set</span>

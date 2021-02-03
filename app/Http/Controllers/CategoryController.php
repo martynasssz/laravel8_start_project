@@ -15,13 +15,19 @@ class CategoryController extends Controller
     public function AllCategory(){
       // $categories = Category::all(); //get all data with category model
       //$categories = Category::latest()->get(); // latest data will showed in the top
-      $categories = Category::latest()->paginate(5); // for pagination
+      //$categories = Category::latest()->paginate(5); // for pagination
 
       //creating using query-builder
 
      // $categories = DB::table('categories')->latest()->get();
 
       // $categories = DB::table('categories')->latest()->paginate(5);  //instead get() we use paginate()
+
+      $categories = DB::table('categories')
+        ->join('users','categories.user_id', 'users.id' )
+        ->select('categories.*','users.name') //select * from categories, and name prom users
+        ->latest()->paginate(5); //show latest on top with pagination
+
        return view('admin.category.index', compact('categories')); //compact pass all data to view
     }
 

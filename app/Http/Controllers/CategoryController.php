@@ -73,16 +73,22 @@ class CategoryController extends Controller
     }
 
     public function Edit($id){
-        $categories = Category::find($id); //we will take date from db with this specific id
+        //$categories = Category::find($id); //we will take date from db with this specific id
+        $categories = DB::table('categories')->where('id', $id )->first();  //id from db match with $id in function argument //first() to load a specific data in query buider
         return view('admin.category.edit', compact('categories')); //to pass data to view of specific one id
     }
 
     public function Update(Request $request, $id){  //Request $request means whatever request i pass throught the form 
-        $update = Category::find($id)->update([
-            'category_name' => $request->category_name,   //$request->category_name we pass request name from form
-            'user_id' => Auth::user()->id
-        ]);
-        return Redirect()->route('all.category')->with('success','Category Updated succesfully' );        
+        // $update = Category::find($id)->update([
+        //     'category_name' => $request->category_name,   //$request->category_name we pass request name from form
+        //     'user_id' => Auth::user()->id
+        // ]);
+
+        $data = array();
+        $data['category_name'] = $request->category_name;
+        $data['user_id'] = Auth::user()->id;
+        DB::table('categories')->where('id',$id)->update($data); //update($data) we pass data array to update
+        return Redirect()->route('all.category')->with('success','Category Updated succesfully');        
 
     }
 

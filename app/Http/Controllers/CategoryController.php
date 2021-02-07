@@ -15,18 +15,18 @@ class CategoryController extends Controller
     public function AllCategory(){
       // $categories = Category::all(); //get all data with category model
       //$categories = Category::latest()->get(); // latest data will showed in the top
-      //$categories = Category::latest()->paginate(5); // for pagination
+      $categories = Category::latest()->paginate(5); // for pagination
 
       //creating using query-builder
 
      // $categories = DB::table('categories')->latest()->get();
 
-      // $categories = DB::table('categories')->latest()->paginate(5);  //instead get() we use paginate()
+     // $categories = DB::table('categories')->latest()->paginate(5);  //instead get() we use paginate()
 
-      $categories = DB::table('categories')
-        ->join('users','categories.user_id', 'users.id' )
-        ->select('categories.*','users.name') //select * from categories, and name prom users
-        ->latest()->paginate(5); //show latest on top with pagination
+    //   $categories = DB::table('categories')
+    //     ->join('users','categories.user_id', 'users.id' )
+    //     ->select('categories.*','users.name') //select * from categories, and name prom users
+    //     ->latest()->paginate(5); //show latest on top with pagination
 
        return view('admin.category.index', compact('categories')); //compact pass all data to view
     }
@@ -68,7 +68,24 @@ class CategoryController extends Controller
 
     //DB::table('categories')->insert($data);  //insert all array data
         
-    return Redirect()->back()->with('success','Category inserted succesfully' );   //when will be inserted it wil redirect to backpage // with ('success', ) means what kind of message we want to see
+    return Redirect()->back()->with('success','Category Inserted succesfully' );   //when will be inserted it wil redirect to backpage // with ('success', ) means what kind of message we want to see
 
     }
+
+    public function Edit($id){
+        $categories = Category::find($id); //we will take date from db with this specific id
+        return view('admin.category.edit', compact('categories')); //to pass data to view of specific one id
+    }
+
+    public function Update(Request $request, $id){  //Request $request means whatever request i pass throught the form 
+        $update = Category::find($id)->update([
+            'category_name' => $request->category_name,   //$request->category_name we pass request name from form
+            'user_id' => Auth::user()->id
+        ]);
+        return Redirect()->route('all.category')->with('success','Category Updated succesfully' );        
+
+    }
+
+
+
 }

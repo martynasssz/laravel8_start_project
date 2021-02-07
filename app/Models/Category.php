@@ -14,8 +14,8 @@ class Category extends Model
         'category_name'        
     ];
 
-    
-    // public function user(){ //create relation
-    //     return $this->hasOne(User::class,'id', 'user_id'); //relation one to one (table fields)
-    // }
+
+    public function user(){ //create relation
+        return $this->hasOne(User::class,'id', 'user_id'); //relation one to one (table fields)
+    }
 }

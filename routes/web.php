@@ -3,8 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\BrandController;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -35,6 +37,10 @@ Route::post('/category/update/{id}',[CategoryController::class,'Update']);
 Route::get('/softdelete/category/{id}',[CategoryController::class,'softDelete']);
 Route::get('/category/restore/{id}',[CategoryController::class,'restore']);
 Route::get('/pdelete/category/{id}',[CategoryController::class,'pdelete']);
+
+/// Brand route
+Route::get('/brand/all',[BrandController::class,'AllBrand'])->name('all.brand');
+
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 

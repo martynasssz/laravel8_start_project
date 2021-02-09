@@ -17,6 +17,8 @@ class CategoryController extends Controller
       //$categories = Category::latest()->get(); // latest data will showed in the top
       $categories = Category::latest()->paginate(5); // for pagination
 
+      $trashCat =Category::onlyTrashed()->latest()->paginate(3); //there will trach data
+
       //creating using query-builder
 
      // $categories = DB::table('categories')->latest()->get();
@@ -28,7 +30,7 @@ class CategoryController extends Controller
     //     ->select('categories.*','users.name') //select * from categories, and name prom users
     //     ->latest()->paginate(5); //show latest on top with pagination
 
-       return view('admin.category.index', compact('categories')); //compact pass all data to view
+       return view('admin.category.index', compact('categories', 'trashCat' )); //compact pass all data to view // variable trahCat will show in index page
     }
 
     
@@ -89,6 +91,12 @@ class CategoryController extends Controller
         $data['user_id'] = Auth::user()->id;
         DB::table('categories')->where('id',$id)->update($data); //update($data) we pass data array to update
         return Redirect()->route('all.category')->with('success','Category Updated succesfully');        
+
+    }
+
+    public function softDelete($id){
+        $delete = Category::find($id)->delete();
+        return Redirect()->back()->with('success', 'Category Soft Delete Successfully');
 
     }
 

@@ -33,8 +33,7 @@ class CategoryController extends Controller
        return view('admin.category.index', compact('categories', 'trashCat' )); //compact pass all data to view // variable trahCat will show in index page
     }
 
-    
-    
+       
     
     
     public function AddCategory(Request $request){
@@ -44,8 +43,7 @@ class CategoryController extends Controller
         [ 
             'category_name.required' => 'Please enter category name', //my customise message when fieds is required   
             'category_name.max' => 'Categoty Less Them 255 characters', //my customise message when character is more then 255 characters       
-        ]
-    );
+        ]);
 
     //elequent method
 

@@ -41,8 +41,7 @@
                       <tr>
                         <th scope="row">{{ $brands->firstItem()+$loop->index }}</th> {{-- we use $brands->firstItem()+$loop->index, for reason, that numering will countinous in every next page  // brands is plural--}}
                         <td>{{ $brand->brand_name }}</td>
-                        <td><img src="" alt="" ></td>  {{--  because is one to one relation we use user method created in category model to access user name --}}
-                   {{--  <td>{{ $category->name }}</td>   when we use querybuider we don't need user method from category model, and we access name straight --}}
+                        <td><img src="{{ asset($brand->brand_image) }}" style="height:40px; width:70px;" ></td>  {{--  asset means project directory ad display brand image --}}
                         <td>
                           @if($brand->created_at == NULL) {{-- without if we get error because we use diffForHumans --}}
                           <span class="text-danger">No Date Set</span>
@@ -68,7 +67,7 @@
                 <div class="card">
                     <div class="card-header"> Add brand</div>
                     <div class="card-body">
-                    <form action="{{ route('store.category') }}" method="POST">
+                    <form action="{{ route('store.brand') }}" method="POST" enctype="multipart/form-data"> {{-- route for brand image storing // enctype="multipart/form-data" mandatory field when interting image--}}
                         @csrf
                         <div class="form-group">
                           <label for="exampleInputEmail1">Brand Name</label>

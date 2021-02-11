@@ -6,6 +6,15 @@
         </h2>
     </x-slot>
 
+    @if(session('success'))    {{--if in session variabe have any success id (message) when will be displayed this message --}}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      <strong>{{ session('success') }}</strong> {{--display success session variable --}}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    @endif
+
     <div class="py-12">
         <div class="container">
             <div class="row">           
@@ -14,8 +23,9 @@
                 <div class="card">
                     <div class="card-header"> Edit Brand</div>
                     <div class="card-body">
-                    <form action="{{ url('brand/update/'.$brands->id) }}" method="POST">
+                    <form action="{{ url('brand/update/'.$brands->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
+                        <input type="hidden" name="old_image" value="{{ $brands->brand_image }}">
                         <div class="form-group">
                           <label for="exampleInputEmail1">Update Brand name </label>
                           <input type="text" name="brand_name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{ $brands->brand_name }}"> {{-- value use to show category name which will edit --}}

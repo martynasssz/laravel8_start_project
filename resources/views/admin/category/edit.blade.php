@@ -15,7 +15,7 @@
                     <div class="card-header"> Edit category</div>
                     <div class="card-body">
                     <form action="{{ url('category/update/'.$categories->id) }}" method="POST">
-                        @csrf
+                        @csrf                        
                         <div class="form-group">
                           <label for="exampleInputEmail1">Update category name </label>
                           <input type="text" name="category_name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{ $categories->category_name }}"> {{-- value use to show category name which will edit --}}

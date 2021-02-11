@@ -51,7 +51,7 @@
                         </td> 
                         <td>
                          <a href="{{ url('brand/edit/'.$brand->id) }}"class="btn btn-info">Edit</a>{{-- edit fied by specific field --}}
-                        <a href="{{ url('softdelete/brand/'.$brand->id) }}"class="btn btn-danger">Delete</a>
+                        <a href="{{ url('brand/delete/'.$brand->id) }}" onclick="return confirm('Are you sure to delete') " class="btn btn-danger">Delete</a> {{-- onclick="return confirm('Are you sure to delete') " //pop up when you press delete button --}}
                         </td>
 
                     </tr> 
